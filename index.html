@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Smart ToDo - Transforme seus objetivos em tarefas acionáveis com IA"
+    />
+    <title>✨ Smart ToDo - Organize sua vida com IA</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css" />
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✨</text></svg>"
+    />
+  </head>
+  <body>
+    <div class="app">
+      <!-- Header -->
+      <header class="header">
+        <div class="header__brand">
+          <span class="header__icon">✨</span>
+          <h1 class="header__title">Smart ToDo</h1>
+        </div>
+        <div class="header__actions">
+          <button
+            class="btn btn--icon"
+            id="import-btn"
+            title="Importar tarefas"
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="7 10 12 15 17 10" />
+              <line x1="12" y1="15" x2="12" y2="3" />
+            </svg>
+          </button>
+          <button
+            class="btn btn--icon"
+            id="export-btn"
+            title="Exportar tarefas"
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="17 8 12 3 7 8" />
+              <line x1="12" y1="3" x2="12" y2="15" />
+            </svg>
+          </button>
+          <button class="btn btn--icon" id="settings-btn" title="Configurações">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <circle cx="12" cy="12" r="3" />
+              <path
+                d="M12 1v4m0 14v4m-9-9h4m14 0h4m-3.5-7.5L15 9m-6 6-2.5 2.5m0-11L9 9m6 6 2.5 2.5"
+              />
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <!-- Main Content -->
+      <main class="main">
+        <!-- Goal Input Section -->
+        <section class="goal-section">
+          <div class="goal-card">
+            <label for="goal-input" class="goal-card__label">
+              O que você quer realizar hoje?
+            </label>
+            <textarea
+              id="goal-input"
+              class="goal-card__input"
+              placeholder="Ex: Organizar meu quarto, Planejar a viagem de férias, Preparar apresentação do trabalho..."
+              rows="3"
+            ></textarea>
+            <div class="goal-card__actions">
+              <button class="btn btn--magic" id="magic-btn">
+                <span class="btn__icon">✨</span>
+                <span class="btn__text">Criar Tarefas</span>
+                <span class="btn__loading">
+                  <span class="spinner"></span>
+                  Pensando...
+                </span>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Tasks Section -->
+        <section class="tasks-section">
+          <div class="tasks-header" id="tasks-header" style="display: none">
+            <h2 class="tasks-header__title">Suas Tarefas</h2>
+            <div class="tasks-header__actions">
+              <button
+                class="btn btn--text"
+                id="undo-btn"
+                title="Desfazer"
+                disabled
+              >
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M3 7v6h6" />
+                  <path d="M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13" />
+                </svg>
+              </button>
+              <button
+                class="btn btn--text"
+                id="redo-btn"
+                title="Refazer"
+                disabled
+              >
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M21 7v6h-6" />
+                  <path d="M3 17a9 9 0 0 1 9-9 9 9 0 0 1 6 2.3l3 2.7" />
+                </svg>
+              </button>
+              <button
+                class="btn btn--text"
+                id="clear-completed-btn"
+                title="Limpar concluídas"
+              >
+                Limpar concluídas
+              </button>
+            </div>
+          </div>
+
+          <div class="tasks-list" id="tasks-list">
+            <!-- Tasks rendered here -->
+          </div>
+
+          <!-- Empty State -->
+          <div class="empty-state" id="empty-state">
+            <div class="empty-state__icon">📝</div>
+            <h3 class="empty-state__title">Nenhuma tarefa ainda</h3>
+            <p class="empty-state__text">
+              Digite seu objetivo acima e clique em
+              <strong>✨ Criar Tarefas</strong> para começar!
+            </p>
+          </div>
+        </section>
+      </main>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <p>Feito com 💜 usando Gemini AI</p>
+      </footer>
+    </div>
+
+    <!-- Settings Modal -->
+    <dialog class="modal" id="settings-modal">
+      <div class="modal__content">
+        <div class="modal__header">
+          <h2 class="modal__title">⚙️ Configurações</h2>
+          <button class="btn btn--icon modal__close" id="settings-close">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
+        </div>
+        <div class="modal__body">
+          <div class="form-group">
+            <label for="api-key-input" class="form-label">
+              Chave da API do Gemini
+              <a
+                href="https://aistudio.google.com/app/apikey"
+                target="_blank"
+                class="form-link"
+              >
+                (Obter chave gratuita)
+              </a>
+            </label>
+            <input
+              type="password"
+              id="api-key-input"
+              class="form-input"
+              placeholder="AIza..."
+            />
+            <p class="form-hint">
+              Sua chave é armazenada apenas no seu navegador e nunca é
+              compartilhada.
+            </p>
+          </div>
+        </div>
+        <div class="modal__footer">
+          <button class="btn btn--secondary" id="settings-cancel">
+            Cancelar
+          </button>
+          <button class="btn btn--primary" id="settings-save">Salvar</button>
+        </div>
+      </div>
+    </dialog>
+
+    <!-- Export Modal -->
+    <dialog class="modal" id="export-modal">
+      <div class="modal__content">
+        <div class="modal__header">
+          <h2 class="modal__title">📤 Exportar Tarefas</h2>
+          <button class="btn btn--icon modal__close" id="export-close">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
+        </div>
+        <div class="modal__body">
+          <div class="export-options">
+            <button class="export-option" id="export-json">
+              <span class="export-option__icon">📄</span>
+              <span class="export-option__label">JSON</span>
+              <span class="export-option__desc">Backup completo</span>
+            </button>
+            <button class="export-option" id="export-csv">
+              <span class="export-option__icon">📊</span>
+              <span class="export-option__label">CSV</span>
+              <span class="export-option__desc">Para Google Tasks</span>
+            </button>
+            <button class="export-option" id="export-text">
+              <span class="export-option__icon">📝</span>
+              <span class="export-option__label">Texto</span>
+              <span class="export-option__desc">Copiar para clipboard</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </dialog>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- Hidden file input for import -->
+    <input type="file" id="import-input" accept=".json" style="display: none" />
+
+    <!-- Scripts -->
+    <script src="js/storage.js"></script>
+    <script src="js/gemini.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
