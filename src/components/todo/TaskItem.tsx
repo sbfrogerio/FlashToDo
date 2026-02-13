@@ -126,7 +126,7 @@ export function TaskItem({ task, depth = 0 }: TaskItemProps) {
                 </span>
 
                 {/* Actions */}
-                <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                <div className="flex items-center gap-1 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity">
                     {/* Flash button - only for top-level tasks without subtasks */}
                     {depth === 0 && !hasSubtasks && (
                         <Button
