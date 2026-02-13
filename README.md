@@ -1,84 +1,91 @@
-# ✨ Smart ToDo
+# Flash ToDo ⚡
 
-Transforme seus objetivos em tarefas acionáveis com IA.
+> Quebre tarefas grandes em passos simples com IA
 
-![Notion-inspired design](https://img.shields.io/badge/Design-Notion%20Inspired-F7F6F3?style=flat-square)
-![Gemini AI](https://img.shields.io/badge/AI-Gemini%201.5-4285F4?style=flat-square)
-![No Dependencies](https://img.shields.io/badge/Dependencies-Zero-5FB67A?style=flat-square)
+Aplicação de lista de tarefas inteligente com integração Google Gemini para decomposição automática de tarefas complexas.
 
-## 🚀 Como Usar
+## ✨ Features
 
-### 1. Obter API Key (Gratuita)
+- **Decomposição AI** - Clique em ⚡ para quebrar tarefas em subtarefas
+- **Nível de Potência** ⚡ - Controle a profundidade da decomposição (1-5)
+- **Drag & Drop** - Reordene tarefas arrastando
+- **Categorias** - Identificação automática com emojis
+- **Dark Mode** - Tema claro/escuro
+- **Export** - Copie para clipboard ou exporte JSON
+- **Offline** - Funciona sem internet (exceto IA)
+- **Mobile First** - Design responsivo
 
-1. Acesse [Google AI Studio](https://aistudio.google.com/app/apikey)
-2. Faça login com sua conta Google
-3. Clique em "Create API Key"
-4. Copie a chave gerada
+## 🚀 Demo
 
-### 2. Abrir o App
+Acesse: [seu-usuario.github.io/flash-todo](https://seu-usuario.github.io/flash-todo)
 
-Simplesmente abra o arquivo `index.html` no seu navegador.
+## ⚙️ Configuração
 
-### 3. Configurar
+1. **Obtenha uma API Key gratuita do Gemini:**
+   - Acesse [aistudio.google.com/app/apikey](https://aistudio.google.com/app/apikey)
+   - Clique em "Create API Key"
+   - Copie a key gerada
 
-1. No primeiro acesso, um modal pedirá sua API key
-2. Cole a chave e clique em "Salvar"
-3. Pronto!
+2. **Configure no app:**
+   - Clique no ícone ⚙️ no header
+   - Cole sua API Key
+   - Clique em "Salvar"
 
-### 4. Criar Tarefas
+## 🛠️ Desenvolvimento Local
 
-1. Digite seu objetivo (ex: "Organizar meu quarto")
-2. Clique em **✨ Criar Tarefas**
-3. A IA vai quebrar em subtarefas acionáveis
-4. Clique ✨ em qualquer subtarefa para detalhá-la ainda mais
+```bash
+# Clone o repositório
+git clone https://github.com/seu-usuario/flash-todo.git
+cd flash-todo
 
-## ✨ Funcionalidades
+# Instale dependências
+npm install
 
-| Feature                  | Descrição                                 |
-| ------------------------ | ----------------------------------------- |
-| **Magic Breakdown**      | IA quebra objetivos em tarefas práticas   |
-| **Subtarefas Aninhadas** | Quebre tarefas em passos cada vez menores |
-| **Drag & Drop**          | Reordene tarefas arrastando               |
-| **Undo/Redo**            | Ctrl+Z / Ctrl+Shift+Z para desfazer       |
-| **Export JSON**          | Backup completo das suas tarefas          |
-| **Export CSV**           | Formato compatível com Google Tasks       |
-| **Persistência**         | Tudo salvo automaticamente no navegador   |
+# Rode em desenvolvimento
+npm run dev
 
-## 📂 Estrutura
-
-```
-smart-todo/
-├── index.html      # Página principal
-├── css/
-│   └── styles.css  # Design system completo
-├── js/
-│   ├── app.js      # Lógica principal
-│   ├── gemini.js   # Integração com IA
-│   ├── storage.js  # LocalStorage + Export
-│   └── ui.js       # Renderização
-└── README.md       # Este arquivo
+# Build para produção
+npm run build
 ```
 
-## 🎨 Design
+## 📦 Deploy no GitHub Pages
 
-- Inspirado no **Notion** - clean e minimalista
-- Paleta de cores quentes e acolhedoras
-- Tipografia **Inter** para legibilidade
-- Animações sutis e micro-interações
-- Totalmente responsivo
+1. Fork/clone este repositório
+2. Vá em Settings > Pages
+3. Em "Source", selecione "GitHub Actions"
+4. Push qualquer mudança para a branch `main`
+5. O deploy será automático!
 
-## 🔒 Privacidade
+Se estiver hospedando em `username.github.io/flash-todo`, descomente o `basePath` no `next.config.ts`:
 
-- Sua API key fica **apenas no seu navegador**
-- Nenhum dado é enviado para servidores externos (além do Gemini)
-- Tudo funciona offline após o primeiro carregamento
+```typescript
+basePath: "/flash-todo",
+```
 
-## 📤 Export para Google Tasks
+## 🏗️ Tech Stack
 
-1. Clique no ícone de export (↑)
-2. Escolha "CSV"
-3. Importe manualmente no Google Tasks
+| Tecnologia | Uso |
+|------------|-----|
+| Next.js 16 | Framework React |
+| React 19 | UI Components |
+| Tailwind CSS v4 | Styling |
+| Framer Motion | Animações |
+| DnD Kit | Drag & Drop |
+| Zustand | State Management |
+| Google Gemini | AI para decomposição |
+
+## 📄 Criador
+
+**Rogério Bezerra**  
+Advogado (OAB/AL 19.249) e Consultor em Inteligência Artificial
+
+> *"Potencialize sua advocacia com Inteligência Artificial"*
+
+- 📱 WhatsApp: (82) 9 8767-3811 | (82) 9 8116-2313
+- 📸 Instagram: [@rogeriosbf](https://instagram.com/rogeriosbf)
+- 💼 LinkedIn: [Rogério Bezerra](https://www.linkedin.com/in/rogeriosbf)
+- 🌐 Site: [sbfrogerio.github.io/Rogerio-Bezerra](https://sbfrogerio.github.io/Rogerio-Bezerra/)
 
 ---
 
-Feito com 💜 usando Gemini AI
+Feito com ☕️ e ❤️ em Maceió/AL

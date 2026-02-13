@@ -1,0 +1,202 @@
+@import "tailwindcss";
+
+/* ===== NOTION-STYLE DESIGN SYSTEM ===== */
+
+:root {
+  /* Background Colors */
+  --background: #ffffff;
+  --background-secondary: #f7f6f3;
+  --background-hover: #ebebea;
+  --background-active: #e3e2e0;
+  
+  /* Foreground Colors */
+  --foreground: #37352f;
+  --foreground-secondary: #787774;
+  --foreground-tertiary: #9b9a97;
+  
+  /* Accent Colors - Warm Blue (Notion-style) */
+  --accent: #2383e2;
+  --accent-hover: #1a6dbd;
+  --accent-light: #e8f3fc;
+  
+  /* Semantic Colors */
+  --success: #0f7b6c;
+  --warning: #d9730d;
+  --error: #e03e3e;
+  
+  /* Spicy Levels 🌶️ */
+  --spicy-1: #9b9a97;
+  --spicy-2: #64c58f;
+  --spicy-3: #f7c94b;
+  --spicy-4: #f19c38;
+  --spicy-5: #e03e3e;
+  
+  /* Border */
+  --border: rgba(55, 53, 47, 0.09);
+  --border-strong: rgba(55, 53, 47, 0.16);
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.04), 0 0 2px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.08), 0 0 2px rgba(0, 0, 0, 0.06);
+  
+  /* Radius - Almost sharp but friendly */
+  --radius-sm: 3px;
+  --radius-md: 4px;
+  --radius-lg: 6px;
+  
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #191919;
+    --background-secondary: #202020;
+    --background-hover: #2f2f2f;
+    --background-active: #373737;
+    
+    --foreground: #ffffffcf;
+    --foreground-secondary: #ffffff73;
+    --foreground-tertiary: #ffffff52;
+    
+    --accent: #529cca;
+    --accent-hover: #6eb3dc;
+    --accent-light: #1e3a4a;
+    
+    --border: rgba(255, 255, 255, 0.09);
+    --border-strong: rgba(255, 255, 255, 0.16);
+    
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.4);
+  }
+}
+
+/* Class-based dark mode (for toggle) */
+.dark {
+  --background: #191919;
+  --background-secondary: #202020;
+  --background-hover: #2f2f2f;
+  --background-active: #373737;
+  
+  --foreground: #ffffffcf;
+  --foreground-secondary: #ffffff73;
+  --foreground-tertiary: #ffffff52;
+  
+  --accent: #529cca;
+  --accent-hover: #6eb3dc;
+  --accent-light: #1e3a4a;
+  
+  --border: rgba(255, 255, 255, 0.09);
+  --border-strong: rgba(255, 255, 255, 0.16);
+  
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+/* Tailwind Theme Integration */
+@theme inline {
+  /* Colors */
+  --color-background: var(--background);
+  --color-background-secondary: var(--background-secondary);
+  --color-background-hover: var(--background-hover);
+  --color-foreground: var(--foreground);
+  --color-foreground-secondary: var(--foreground-secondary);
+  --color-accent: var(--accent);
+  --color-accent-light: var(--accent-light);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  
+  /* Fonts */
+  --font-sans: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: var(--font-geist-mono), "SFMono-Regular", Consolas, monospace;
+}
+
+/* Base Styles */
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Focus Styles - Accessible */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Selection */
+::selection {
+  background: var(--accent-light);
+  color: var(--foreground);
+}
+
+/* Scrollbar - Notion style */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 5px;
+  border: 2px solid var(--background);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--foreground-tertiary);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.2s ease-out;
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, var(--background-secondary) 25%, var(--background-hover) 50%, var(--background-secondary) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
